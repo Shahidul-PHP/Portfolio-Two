@@ -1,0 +1,64 @@
+<?php
+session_start();
+require '../login_auth.php';
+require '../db.php';
+
+
+?>
+
+<?php require '../dashboard_parts/Header.php'; ?>
+
+<div class="container">
+    <div class="row">
+        <!-- adding -->
+        <div class="col-lg-7 m-auto">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        <div class="mb-3">
+                            <input type="text">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- show added items -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2></h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <?php foreach($as as $as){?>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        <?php }?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php if(isset($_SESSION[''])){ ?>
+    <strong><?=$_SESSION['']?></strong>
+<?php } unset($_SESSION['']) ?>
+
+
+<?php require '../dashboard_parts/Footer.php'; ?>
