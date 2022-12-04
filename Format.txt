@@ -57,8 +57,10 @@ require '../db.php';
 </div>
 
 <?php if(isset($_SESSION[''])){ ?>
-    <strong><?=$_SESSION['']?></strong>
+    <strong class="text-success"><?=$_SESSION['']?></strong>
 <?php } unset($_SESSION['']) ?>
 
 
 <?php require '../dashboard_parts/Footer.php'; ?>
+
+ <td> <a class="btn btn-<?= ($banner['status'] == 1) ? 'success' : 'secondary' ?> text-capitalize w-50 btn-sm" href="photo_status.php?id=<?= $banner['id'] ?>"><?= ($banner['status'] == 1) ? 'active' : 'deactive' ?></a></td>

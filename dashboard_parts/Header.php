@@ -81,6 +81,21 @@ $assoc_header = mysqli_fetch_assoc($result_header);
                                 <i class="align-middle" data-feather="square"></i> <span class="align-middle">Experience</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../../PortfolioTwo/Skills/add_skill.php">
+                                <i class="align-middle" data-feather="square"></i> <span class="align-middle">Skills Add</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../../PortfolioTwo/Education/add_edu.php">
+                                <i class="align-middle" data-feather="square"></i> <span class="align-middle">Educations</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../../PortfolioTwo/Services/add_service.php">
+                                <i class="align-middle" data-feather="square"></i> <span class="align-middle">Services</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

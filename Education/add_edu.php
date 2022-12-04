@@ -3,8 +3,8 @@ session_start();
 require '../login_auth.php';
 require '../db.php';
 
-$select_skill_show = "SELECT * FROM skills";
-$result_skill_show = mysqli_query($db_connection, $select_skill_show);
+$select_edu = "SELECT * FROM educations";
+$res = mysqli_query($db_connection, $select_edu);
 
 
 ?>
@@ -14,41 +14,41 @@ $result_skill_show = mysqli_query($db_connection, $select_skill_show);
 <div class="container">
     <div class="row">
         <!-- adding -->
-        <div class="col-lg-9 m-auto">
+        <div class="col-lg-10 m-auto">
             <div class="card">
                 <div class="card-header">
-                    <h2>Add Skills</h2>
+                    <h2>Add Education</h2>
                     <?php if (isset($_SESSION['done'])) { ?>
-                        <strong><?= $_SESSION['done'] ?></strong>
+                        <strong class="text-success"><?= $_SESSION['done'] ?></strong>
                     <?php }
                     unset($_SESSION['done']) ?>
 
                 </div>
                 <div class="card-body">
-                    <form action="skill_post.php" method="POST">
+                    <form action="edu_post.php" method="POST">
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="desp" placeholder="Description">
+                            <input type="text" class="form-control" name="title" placeholder="Education Title">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="title" placeholder="Title">
+                            <input type="text" class="form-control" name="year" placeholder="Education Year">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="percent" placeholder="SKill Percent">
+                            <input type="text" class="form-control" name="institute_name" placeholder="Instiute Name">
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-warning">Add Skills</button>
+                            <button type="submit" class="btn btn-danger">Add Education</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!-- show added items -->
-        <div class="col-lg-9 m-auto">
+        <div class="col-lg-10 m-auto">
             <div class="card">
                 <div class="card-header">
                     <h2>
-                        <h2>Show Added Skills</h2>
+                        <h2>Show Educations Here</h2>
                     </h2>
                 </div>
                 <div class="card-body">
@@ -56,15 +56,17 @@ $result_skill_show = mysqli_query($db_connection, $select_skill_show);
                         <tr>
                             <td>SL</td>
                             <td>Title</td>
-                            <td>Percent</td>
+                            <td>Year</td>
+                            <td>Institute</td>
                             <td>Status</td>
                         </tr>
-                        <?php foreach ($result_skill_show as $sl => $show_skill) { ?>
+                        <?php foreach ($res as $sl => $education) { ?>
                             <tr>
                                 <td><?= $sl + 1 ?></td>
-                                <td><?= $show_skill['title'] ?></td>
-                                <td><?= $show_skill['percent'] ?></td>
-                                <td> <a class="btn btn-<?= ($show_skill['status'] == 1) ? 'success' : 'secondary' ?> text-capitalize w-50 btn-sm" href="skill_status.php?id=<?= $show_skill['id'] ?>"><?= ($show_skill['status'] == 1) ? 'active' : 'deactive' ?></a></td>
+                                <td><?= $education['title'] ?></td>
+                                <td><?= $education['year'] ?></td>
+                                <td><?= $education['institute'] ?></td>
+                                <td> <a class="btn btn-<?= ($education['status'] == 1) ? 'success' : 'secondary' ?> text-capitalize  btn-sm" href="edu_status.php?id=<?= $education['id'] ?>"><?= ($education['status'] == 1) ? 'active' : 'deactive' ?></a></td>
                             </tr>
                         <?php } ?>
                     </table>
@@ -74,10 +76,6 @@ $result_skill_show = mysqli_query($db_connection, $select_skill_show);
     </div>
 </div>
 
-<?php if (isset($_SESSION[''])) { ?>
-    <strong><?= $_SESSION[''] ?></strong>
-<?php }
-unset($_SESSION['']) ?>
 
 
 <?php require '../dashboard_parts/Footer.php'; ?>
