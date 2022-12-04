@@ -25,10 +25,16 @@ $result_edu3 = mysqli_fetch_assoc($result_edu);
 //SERVICES
 $select_services = "SELECT * FROM services";
 $serv_query = mysqli_query($db_connection, $select_services);
+//PROJECTS
+$projects = "SELECT * FROM projects";
+$pro_query = mysqli_query($db_connection, $projects);
+//TESTIMONIAL
+$testimonial = "SELECT * FROM testimonial";
+$test_query = mysqli_query($db_connection, $testimonial);
 
+//SEND MESSEGE
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -264,11 +270,11 @@ $serv_query = mysqli_query($db_connection, $select_services);
                                 <i class="fa fa-crop-alt fa-2x text-dark"></i>
                             </div>
                             <div class="ms-sm-4">
-                                <h4 class="mb-3"><?=$services['sub_title']?></h4>
+                                <h4 class="mb-3"><?= $services['sub_title'] ?></h4>
 
-                                <h6 class="mb-3"><span class="text-primary"></span><?=$services['title']?></h6>
+                                <h6 class="mb-3"><span class="text-primary"></span><?= $services['title'] ?></h6>
 
-                                <span class="text-capitalize"><?=$services['desp']?></span>
+                                <span class="text-capitalize"><?= $services['desp'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -289,66 +295,22 @@ $serv_query = mysqli_query($db_connection, $select_services);
                 <div class="col-lg-6 text-lg-end">
                     <ul class="list-inline mx-n3 mb-0" id="portfolio-flters">
                         <li class="mx-3 active" data-filter="*">All Projects</li>
-                        <li class="mx-3" data-filter=".first">UI/UX Design</li>
-                        <li class="mx-3" data-filter=".second">Graphic Design</li>
                     </ul>
                 </div>
             </div>
             <div class="row g-4 portfolio-container wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-1.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-1.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
+                <?php foreach ($pro_query as $projects) { ?>
+                    <div class="col-lg-4 col-md-6 portfolio-item first">
+                        <div class="portfolio-img rounded overflow-hidden">
+
+                            <img style="width: 365px;height:350px;" class="img-fluid" src="Uploads/Pro/<?= $projects['photo'] ?>" alt="">
+                            <div class="portfolio-btn">
+
+                                <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="Uploads/Pro/<?= $projects['photo'] ?>" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-2.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-3.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-4.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-5.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-5.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second">
-                    <div class="portfolio-img rounded overflow-hidden">
-                        <img class="img-fluid" src="img/project-6.jpg" alt="">
-                        <div class="portfolio-btn">
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href="img/project-6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-lg-square btn-outline-secondary border-2 mx-1" href=""><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -369,42 +331,20 @@ $serv_query = mysqli_query($db_connection, $select_services);
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle border border-secondary p-2 mx-auto" src="img/testimonial-1.jpg" alt="">
-                                <div class="testimonial-icon">
-                                    <i class="fa fa-quote-left text-primary"></i>
+                        <?php foreach ($test_query as $review) { ?>
+                            <div class="testimonial-item text-center">
+                                <div class="position-relative mb-5">
+                                    <img class="img-fluid rounded-circle border border-secondary p-2 mx-auto" src="img/testimonial-2.jpg" alt="">
+                                    <div class="testimonial-icon">
+                                        <i class="fa fa-quote-left text-primary"></i>
+                                    </div>
                                 </div>
+                                <p class="fs-5 fst-italic"><?= $review['desp'] ?></p>
+                                <hr class="w-25 mx-auto">
+                                <h5><?= $review['name'] ?></h5>
+                                <span><?= $review['designation'] ?></span>
                             </div>
-                            <p class="fs-5 fst-italic">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle border border-secondary p-2 mx-auto" src="img/testimonial-2.jpg" alt="">
-                                <div class="testimonial-icon">
-                                    <i class="fa fa-quote-left text-primary"></i>
-                                </div>
-                            </div>
-                            <p class="fs-5 fst-italic">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle border border-secondary p-2 mx-auto" src="img/testimonial-3.jpg" alt="">
-                                <div class="testimonial-icon">
-                                    <i class="fa fa-quote-left text-primary"></i>
-                                </div>
-                            </div>
-                            <p class="fs-5 fst-italic">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-lg-3 d-none d-lg-block">

@@ -96,6 +96,17 @@ $assoc_header = mysqli_fetch_assoc($result_header);
                                 <i class="align-middle" data-feather="square"></i> <span class="align-middle">Services</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../../PortfolioTwo/Projects/add_project.php">
+                                <i class="align-middle" data-feather="square"></i> <span class="align-middle">My Projects</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../../PortfolioTwo/Testimonial/add.php">
+                                <i class="align-middle" data-feather="square"></i> <span class="align-middle">Testimonial</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
