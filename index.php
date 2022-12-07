@@ -31,10 +31,12 @@ $pro_query = mysqli_query($db_connection, $projects);
 //TESTIMONIAL
 $testimonial = "SELECT * FROM testimonial";
 $test_query = mysqli_query($db_connection, $testimonial);
-
 //SEND MESSEGE
-
+$select_address = "SELECT * FROM address";
+$result_address = mysqli_query($db_connection, $select_address);
+$after_ad_assoc = mysqli_fetch_assoc($result_address);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,8 +104,6 @@ $test_query = mysqli_query($db_connection, $testimonial);
                 <a href="#team" class="nav-item nav-link">Team</a>
                 <a href="#testimonial" class="nav-item nav-link">Testimonial</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>
-                <a href="loginTwo.php" target="_blank" class="nav-item nav-link">Login</a>
-                <a href="dash_post.php" target="_blank" class="nav-item nav-link">Dashboard</a>
             </div>
         </div>
     </nav>
@@ -374,55 +374,55 @@ $test_query = mysqli_query($db_connection, $testimonial);
             <div class="row g-5">
                 <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="mb-2">My office:</p>
-                    <h3 class="fw-bold">123 Street, New York, USA</h3>
+                    <h3 class="fw-bold"><?=$after_ad_assoc['office']?></h3>
                     <hr class="w-100">
                     <p class="mb-2">Call me:</p>
-                    <h3 class="fw-bold">+012 345 6789</h3>
+                    <h3 class="fw-bold"><?=$after_ad_assoc['phone']?></h3>
                     <hr class="w-100">
                     <p class="mb-2">Mail me:</p>
-                    <h3 class="fw-bold">info@example.com</h3>
+                    <h3 class="fw-bold"><?=$after_ad_assoc['email']?></h3>
                     <hr class="w-100">
-                    <p class="mb-2">Follow me:</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-primary me-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-primary me-2" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-primary me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
                 <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                    <form>
+                    <p class="mb-4">You can send me a message for further action. If you have any Query than Feel free to ask me</p>
+
+                    <!-- form start -->
+                    <form action="message/msg_post.php" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input name="sub" type="text" class="form-control" id="subject" placeholder="Subject">
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <textarea name="desp" class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
+                            <?php if (isset($_SESSION['done'])) { ?>
+                                <strong class="text-success"><?= $_SESSION['done'] ?></strong>
+                            <?php }
+                            unset($_SESSION['done']) ?>
                             <div class="col-12">
                                 <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
                             </div>
                         </div>
                     </form>
+                    <!-- form end -->
                 </div>
             </div>
         </div>
